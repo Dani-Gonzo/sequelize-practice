@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     // Movie model
     class Movie extends Sequelize.Model {}
     Movie.init({
-        //Set custome primary key column
+        //Set custom primary key column
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -53,8 +53,19 @@ module.exports = (sequelize) => {
             type: Sequelize.BOOLEAN,
             allowNull: false, // disallow null
             defaultValue: false // set default value
-        }
-    }, {sequelize} ); // same as {sequelize: sequelize}
+        },
+        
+        
+    },
+    // Model options object
+    {
+        // timestamps: false, // disable timestamps
+        // // freezeTableName: true, //disable plural table names
+        // modelName: 'movie', // set model name to 'movie'; table name will be 'movies'
+        // tableName: 'my_movies_table', // table name change
+        paranoid: true, // enable "soft" deletes
+        sequelize // same as {sequelize: sequelize}
+    }); 
 
     return Movie;
 }
